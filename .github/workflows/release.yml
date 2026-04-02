@@ -3,6 +3,10 @@ name: Release
 on:
   workflow_call:
     inputs:
+      node_version:
+        required: false
+        type: string
+        default: "22"
       semantic_version:
         required: true
         type: string
@@ -60,6 +64,26 @@ jobs:
     -
       name: Checkout Repository
       uses: actions/checkout@v4
+    -
+      name: Set up pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        run_install: false
+    -
+      name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node_version }}
+        cache: "pnpm"
+    -
+      name: Install dependencies
+      run: pnpm install --frozen-lockfile
+    -
+      name: Build Login Standalone Output
+      env:
+        NX_NO_CLOUD: "true"
+        NX_DAEMON: "false"
+      run: pnpm nx run @zitadel/login:build
     -
       name: Set up QEMU
       uses: docker/setup-qemu-action@v3

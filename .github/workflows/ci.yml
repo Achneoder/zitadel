@@ -32,5 +32,6 @@ jobs:
       pull-requests: write
     if: ${{ github.event_name == 'workflow_dispatch' || github.ref_name == 'next' || github.ref_name == 'next-rc' }}
     with:
+      node_version: "22"
       semantic_version: "23.0.7"
       image_name_github_login: "ghcr.io/zitadel/zitadel-login"
