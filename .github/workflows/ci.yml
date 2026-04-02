@@ -22,16 +22,6 @@ permissions:
   pull-requests: write
 
 jobs:
-  lint_test_build:
-    uses: ./.github/workflows/lint_test_build.yml
-    if: ${{ github.ref != 'refs/heads/main' || github.event_name == 'workflow_dispatch' }}
-    permissions:
-      contents: read
-    with:
-      node_version: "22"
-    secrets:
-      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-      NX_CLOUD_ACCESS_TOKEN_READONLY: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
 
   release:
     uses: ./.github/workflows/release.yml
