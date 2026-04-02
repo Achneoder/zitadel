@@ -6,6 +6,8 @@ on:
       - "*"
     branches:
       - "main"
+      - "next"
+      - "next-rc"
   pull_request:
   workflow_dispatch:
 
@@ -38,7 +40,7 @@ jobs:
       contents: write
       issues: write
       pull-requests: write
-    if: ${{ github.event_name != 'pull_request' }}
+    if: ${{ github.event_name == 'workflow_dispatch' || github.ref_name == 'next' || github.ref_name == 'next-rc' }}
     with:
       semantic_version: "23.0.7"
       image_name_github_login: "ghcr.io/zitadel/zitadel-login"
