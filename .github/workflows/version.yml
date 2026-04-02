@@ -28,13 +28,6 @@ jobs:
       name: Checkout Repository
       uses: actions/checkout@v4
     -
-      name: Download Artifacts
-      uses: actions/download-artifact@v4
-      if: ${{ !inputs.dry_run }}
-      with:
-        name: zitadel-archives
-        path: .artifacts/pack
-    -
       name: Run Semantic Release
       uses: cycjimmy/semantic-release-action@v4
       id: semantic
