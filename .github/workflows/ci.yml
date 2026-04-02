@@ -34,4 +34,4 @@ jobs:
     with:
       node_version: "22"
       semantic_version: "23.0.7"
-      image_name_github_login: "ghcr.io/zitadel/zitadel-login"
+      image_name_github_login: "ghcr.io/achneoder/zitadel-login"
